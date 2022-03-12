@@ -6,8 +6,8 @@ class MainPage(Page):
         self.has_widget_made=False
     def show_page(self) -> None:
         self.make_widgets()
-        # self.columnconfigure(0, weight=0)
-        # self.rowconfigure(0, weight=0)
         self.pack(expand=True)
     def make_widgets(self) -> None:
-        Button(self,text="Main Page").pack(anchor='center')
+        Button(self,text="Put Password",command=self.goto_password_page).pack(anchor='center')
+    def goto_password_page(self):
+        self.app.frame_manager.show_frame("PasswordPage")

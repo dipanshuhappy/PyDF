@@ -14,13 +14,13 @@ class WindowManager:
 class FrameManager:
     def __init__(self,frames:dict[str,Page]) -> None:
         self.frames=frames
-        self.stack=[]
-    def show_frame(self,id) -> None:
+        self.stack:list=[]
+    def show_frame(self,id:str) -> None:
         if(bool(self.stack)):   self.remove_frame(self.stack[-1])
         self.frames[id].show_page()
         print(f'Show frame is runned for {id}')
         self.stack.append(id)
-    def remove_frame(self,id)  -> None:
+    def remove_frame(self,id:str)  -> None:
         self.frames[id].destroy()
         self.stack.remove(id)
     def go_back(self) -> None :
