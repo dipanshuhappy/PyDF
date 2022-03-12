@@ -6,14 +6,13 @@ class WindowManager:
     def __do_window_config(self,app:tkinter.Tk)->None:
         app.config(self.config)
         app.title('PyDF')
-        app.geometry('800x800')
+        app.state('zoomed')
         app.rowconfigure(0,weight=1)
         app.columnconfigure(0,weight=1)
 class Page(tkinter.Frame):
-    def __init__(self,app) -> None:
-        super().__init__(app,bg='red')
+    def __init__(self,app,**kwargs) -> None:
+        super().__init__(app,**kwargs)
         self.app=app
-
 class FrameManager:
     def __init__(self,frames:dict[str,Page]) -> None:
         self.frames=frames
