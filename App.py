@@ -1,7 +1,6 @@
-from multiprocessing import managers
 import tkinter as tk
+from pages.MainPage import MainPage
 from pages.WelcomePage import WelcomePage
-
 from utils import FrameManager, WindowManager
 
 class App(tk.Tk):
@@ -10,7 +9,8 @@ class App(tk.Tk):
         else: super().__init__()
         WindowManager(self)
         self.frame_manager= FrameManager({
-            'k':WelcomePage(self)
+            'WelcomePage':WelcomePage(self),
+            'MainPage':MainPage(self)
             })
-        self.show_frame('k')
+        self.frame_manager.show_frame('WelcomePage')
 App().mainloop()
