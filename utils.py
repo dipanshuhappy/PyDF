@@ -5,16 +5,14 @@ class WindowManager:
         self.__do_window_config(app)
     def __do_window_config(self,app:tkinter.Tk)->None:
         app.config(self.config)
+        app.title('PyDF')
+        app.geometry('800x800')
         app.rowconfigure(0,weight=1)
         app.columnconfigure(0,weight=1)
 class Page(tkinter.Frame):
     def __init__(self,app) -> None:
-        super().__init__(app)
+        super().__init__(app,bg='red')
         self.app=app
-    def show_page(self)->None:
-        pass
-    def make_widgets(self)->None:
-        pass
 
 class FrameManager:
     def __init__(self,frames:dict[str,Page]) -> None:

@@ -9,9 +9,9 @@ class App(tk.Tk):
         if (screenName!=None): super().__init__(screenName, baseName, className, useTk, sync, use)
         else: super().__init__()
         WindowManager(self)
-        page=FrontPage(self)
-        self.manager=FrameManager({
-            'frontPage':page
+        d=FrameManager({
+            'f':FrontPage(self),
+            'K':FrontPage(self)
         })
-        self.manager.show_frame('frontPage')
+
 App().mainloop()
