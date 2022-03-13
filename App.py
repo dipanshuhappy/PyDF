@@ -9,10 +9,12 @@ class App(tk.Tk):
         if (screenName!=None): super().__init__(screenName, baseName, className, useTk, sync, use)
         else: super().__init__()
         WindowManager(self)
+        self.initialize_frames()
+    def initialize_frames(self):
         self.frame_manager= FrameManager({
             'WelcomePage':WelcomePage(self),
             'MainPage':MainPage(self),
-            "PasswordPage":PasswordPage(self)
-            })
+            "PasswordPage":PasswordPage(self) 
+        })
         self.frame_manager.show_frame('WelcomePage')
 App().mainloop()

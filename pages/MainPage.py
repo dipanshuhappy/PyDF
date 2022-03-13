@@ -1,4 +1,5 @@
 from tkinter import Button, Label
+from components.ButtonGroup import ButtonGroup
 from pages.Page import Page
 class MainPage(Page):
     def __init__(self, app) -> None:
@@ -8,6 +9,13 @@ class MainPage(Page):
         self.make_widgets()
         self.pack(expand=True)
     def make_widgets(self) -> None:
-        Button(self,text="Put Password",command=self.goto_password_page).pack(anchor='center')
+        ButtonGroup(self,
+        [
+            Button(self,text="Put Password",command=self.goto_password_page,foreground='red'),
+            Button(self,text='click me',foreground='brown'),
+            Button(self,text='click me',foreground='blue'),
+            Button(self,text='click me',foreground='black')
+        ]
+        ).show_vertically()
     def goto_password_page(self):
         self.app.frame_manager.show_frame("PasswordPage")
