@@ -1,4 +1,5 @@
 import tkinter as tk
+from components.BackButton import BackButton
 from pages.MainPage import MainPage
 from pages.PasswordPage import PasswordPage
 from pages.WelcomePage import WelcomePage
@@ -9,6 +10,7 @@ class App(tk.Tk):
         if (screenName!=None): super().__init__(screenName, baseName, className, useTk, sync, use)
         else: super().__init__()
         WindowManager(self)
+        BackButton(self)
         self.initialize_frames()
     def initialize_frames(self):
         self.frame_manager= FrameManager({

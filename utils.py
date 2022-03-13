@@ -16,14 +16,16 @@ class FrameManager:
         self.frames=frames
         self.stack:list=[]
     def show_frame(self,id:str) -> None:
-        if(bool(self.stack)):   self.remove_frame(self.stack[-1])
+        if(bool(self.stack)):   self.frames[self.stack[-1]].pack_forget()
         self.frames[id].show_page()
         print(f'Show frame is runned for {id}')
         self.stack.append(id)
     def remove_frame(self,id:str)  -> None:
-        self.frames[id].destroy()
+        self.frames[id].pack_forget()
         self.stack.remove(id)
     def go_back(self) -> None :
-        self.frames[id].destroy()
-        self.stack.pop()
-        self.frames[self.stack[-1]].show_page()
+        print(self.stack)
+        print(self.frames)
+        self.remove_frame(self.stack[-1])
+        self.frames[self.stack[-1]].pack()
+        # self.frames[self.stack[-1]].destroy()

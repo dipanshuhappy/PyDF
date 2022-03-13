@@ -1,3 +1,4 @@
+from itertools import count
 import tkinter
 from pages.Page import Page
 class ButtonGroup(tkinter.Frame):
@@ -9,3 +10,8 @@ class ButtonGroup(tkinter.Frame):
         for button in self.buttons:
             button.grid(row=row_count,column=0)
             row_count+=1
+    def show_horizontally(self):
+        column_count=0
+        for button in self.buttons:
+            button.grid(row=0,column=column_count)
+            column_count+=1

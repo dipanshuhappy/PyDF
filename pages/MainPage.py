@@ -9,13 +9,14 @@ class MainPage(Page):
         self.make_widgets()
         self.pack(expand=True)
     def make_widgets(self) -> None:
-        ButtonGroup(self,
-        [
-            Button(self,text="Put Password",command=self.goto_password_page,foreground='red'),
-            Button(self,text='click me',foreground='brown'),
-            Button(self,text='click me',foreground='blue'),
-            Button(self,text='click me',foreground='black')
-        ]
-        ).show_vertically()
+        # ButtonGroup(self,
+        # [
+        #     Button(self,text="Put Password",command=self.goto_password_page,foreground='red'),
+        #     Button(self,text='click me',foreground='brown'),
+        #     Button(self,text='click me',foreground='blue'),
+        #     Button(self,text='click me',foreground='black')
+        # ]
+        # ).show_horizontally()
+        Button(self.app,text="Put Password",command=self.goto_password_page,foreground='red').pack()
     def goto_password_page(self):
         self.app.frame_manager.show_frame("PasswordPage")
