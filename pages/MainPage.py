@@ -17,6 +17,5 @@ class MainPage(Page):
             Button(self,text='click me',foreground='black')
         ]
         ).show_vertically()
-        # Button(self.app,text="Put Password",command=self.goto_password_page,foreground='red').pack()
     def goto_password_page(self):
         self.app.frame_manager.show_frame("PasswordPage")

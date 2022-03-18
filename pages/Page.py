@@ -7,3 +7,9 @@ class Page(tkinter.Frame):
     def __init__(self,app:App,**kwargs) -> None:
         super().__init__(app,**kwargs)
         self.app:App=app
+    def destroy(self) -> None:
+        for childern  in self.winfo_children():
+            print('Children',childern)
+            childern.destroy()
+
+        return super().destroy()

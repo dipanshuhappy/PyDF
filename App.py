@@ -1,3 +1,4 @@
+import sys
 import tkinter as tk
 from components.BackButton import BackButton
 from pages.MainPage import MainPage
@@ -19,4 +20,6 @@ class App(tk.Tk):
             "PasswordPage":PasswordPage
         },self)
         self.frame_manager.show_frame('WelcomePage')
-App().mainloop()
+app=App()
+print("App size",sys.getsizeof(app))
+app.mainloop()
