@@ -1,7 +1,8 @@
 from __future__ import annotations
 import tkinter
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING,Type
 from pages.Page import Page
+import sys
 if TYPE_CHECKING:
     from App import App
 class WindowManager:
@@ -19,27 +20,35 @@ class FrameManager:
         self.frames=frames
         self.stack:list=[]
         self.app=app
+    def get_frame(self,id:str)->Type[Page]| Page:
+        print("id and size is ",id," and ",sys.getsizeof(self.frames[id]))
+        return self.frames[id]
     def show_frame(self,id:str) -> None:
         if ( bool(self.stack)):  
-           self.frames[self.stack[-1]].destroy()
-
-    #    self.frames[id]=self.frames[id](self.app) if ()) else self.frames[id].__class__(self.app)
+           self.remove_frame(self.stack[-1])
         if (isinstance(self.frames[id],type)):
            print('This is object ',self.frames[id].__class__)
            self.frames[id]=self.frames[id](self.app)
-          
         else:
             print('this is class ',self.frames[id].__class__)
             self.frames[id]=self.frames[id].__class__(self.app)
         print(self.frames)
-        self.frames[id].show_page()
+        self.get_frame(id).show_page()
         self.stack.append(id)
+        self.print_frames_memory()
     def remove_frame(self,id:str)  -> None:
-        self.frames[id].destroy()
+        self.get_frame(id).destroy()
+        self.frames[id]=self.get_frame(id).__class__
+        print(self.frames)
+    def print_frames_memory(self)->None:
+        print("Size of frames is",sys.getsizeof(self.frames))
+    def remove_latest_frame(self)->None:
+        self.remove_frame(self.stack[-1])
     def go_back(self) -> None :
-        self.frames[self.stack[-1]].destroy()
-        self.frames[self.stack[-2]]=self.frames[self.stack[-2]].__class__(self.app)
+        self.remove_latest_frame()
+        self.frames[self.stack[-2]]=self.frames[self.stack[-2]](self.app)
         self.frames[self.stack[-2]].show_page()
         print(self.frames)
         self.stack.pop()
-        
+        self.print_frames_memory()
+   
