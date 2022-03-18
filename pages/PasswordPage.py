@@ -7,8 +7,6 @@ class PasswordPage(Page):
         self.has_widget_made=False
     def show_page(self) -> None:
         self.make_widgets()
-        # self.columnconfigure(0, weight=0)
-        # self.rowconfigure(0, weight=0)
         self.pack(expand=True)
     def make_widgets(self) -> None:
         Label(self,text="Select A PDf and put password ").pack()

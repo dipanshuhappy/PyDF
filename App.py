@@ -14,9 +14,9 @@ class App(tk.Tk):
         self.initialize_frames()
     def initialize_frames(self):
         self.frame_manager= FrameManager({
-            'WelcomePage':WelcomePage(self),
-            'MainPage':MainPage(self),
-            "PasswordPage":PasswordPage(self) 
-        })
+            'WelcomePage':WelcomePage,
+            'MainPage':MainPage,
+            "PasswordPage":PasswordPage
+        },self)
         self.frame_manager.show_frame('WelcomePage')
 App().mainloop()
