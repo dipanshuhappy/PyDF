@@ -26,12 +26,6 @@ class FrameManager:
     def show_frame(self,id:str) -> None:
         if ( bool(self.stack)):  
            self.remove_frame(self.stack[-1])
-        # if (isinstance(self.frames[id],type)):
-        #    print('This is object ',self.frames[id].__class__)
-        #    self.frames[id]=self.frames[id](self.app)
-        # else:
-        #     print('this is class ',self.frames[id].__class__)
-        #     self.frames[id]=self.frames[id].__class__(self.app)
         self.frames[id]=self.frames[id](self.app)
         print(self.frames)
         self.get_frame(id).show_page()
