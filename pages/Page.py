@@ -11,5 +11,8 @@ class Page(tkinter.Frame):
         for childern  in self.winfo_children():
             print('Children',childern)
             childern.destroy()
-
         return super().destroy()
+    def show_page()->None:
+        pass
+    def make_widget()->None:
+        pass

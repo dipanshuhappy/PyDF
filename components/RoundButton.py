@@ -1,14 +1,11 @@
-import imp
 from time import sleep
-from tkinter import Canvas, ttk
+from tkinter import  ttk
 import typing
 from typing import Callable
 import tkinter
-
-from click import command
 from pages.Page import Page
-class RoundButton(ttk.Frame):
-    def __init__(self,parent_frame:tkinter.Tk|tkinter.Frame|Page,width:float|int,height:float|int,x:float|int,y:float|int,text:str,command:Callable,bg_color:str="black",text_color:str="white",**kwargs) -> None:
+class RoundButton(tkinter.Frame):
+    def __init__(self,parent_frame:tkinter.Tk|tkinter.Frame|Page,width:float|int,height:float|int,text:str,command:Callable,bg_color:str="black",text_color:str="white",**kwargs) -> None:
         super().__init__(parent_frame)
         self.bg_color=bg_color
         self.command=command
@@ -17,10 +14,11 @@ class RoundButton(ttk.Frame):
         self.button_text= self.canvas.create_text(width/2, height/2, text=text,fill=text_color)
         self.canvas.tag_bind(self.border, "<Button-1>", self.clicked)
         self.canvas.tag_bind(self.button_text, "<Button-1>",self.clicked)
-        self.show_button()
     def show_button(self):
+        # self.update()
         self.canvas.pack()
         self.pack()
+        # self.update()
     def round_rectangle(self,x1, y1, x2, y2, radius=25, **kwargs):
         
         points = [

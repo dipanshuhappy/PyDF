@@ -1,6 +1,7 @@
 
 from tkinter import Button, Label
 from components.ButtonGroup import ButtonGroup
+from components.RoundButton import RoundButton
 from pages.Page import Page
 class WelcomePage(Page):
     def __init__(self, app) -> None:
@@ -13,7 +14,7 @@ class WelcomePage(Page):
         self.pack(expand=True)
     def make_widgets(self) -> None:
         Button(self,text="Enter",command=lambda:self.goto_mainPage()).pack(anchor='center')
-      
+        RoundButton(self,200,30,'hi',lambda :print('kjld')).show_button()
     def goto_mainPage(self):
         self.app.frame_manager.show_frame("MainPage")
         

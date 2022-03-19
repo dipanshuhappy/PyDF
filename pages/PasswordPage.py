@@ -1,6 +1,6 @@
 from tkinter import Button, Entry, Label, filedialog
 from pages.Page import Page
-from password import pikepdf
+from pdf_utils import  put_password
 class PasswordPage(Page):
     def __init__(self, app) -> None:
         super().__init__(app)
@@ -16,7 +16,7 @@ class PasswordPage(Page):
         Label(self,text="Put password").pack()
         Button(self,text="Finish",command=self.encrypt).pack(anchor='center')
     def encrypt(self):
-        pikepdf(self.password.get(),self.filename)
+        put_password(self.password.get(),self.filename)
     def getPDf(self):
         filetypes = (
         ('pdf files', '*.pdf'),

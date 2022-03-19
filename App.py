@@ -12,7 +12,6 @@ class App(tk.Tk):
         else: super().__init__()
         WindowManager(self)
         BackButton(self)
-        RoundButton(self,200,30,0,0,'hi',lambda :print('kjld'))
         self.initialize_frames()
     def initialize_frames(self):
         self.frame_manager= FrameManager({
@@ -20,7 +19,7 @@ class App(tk.Tk):
             'MainPage':MainPage,
             "PasswordPage":PasswordPage
         },self)
-        # self.frame_manager.show_frame('WelcomePage')
+        self.frame_manager.show_frame('WelcomePage')
 app=App()
 print("App size",sys.getsizeof(app))
 app.mainloop()
