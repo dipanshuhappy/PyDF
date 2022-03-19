@@ -30,4 +30,12 @@ if you want to add to this source code , do the following.
 - And Custom Widget components is under [components directory](/components)
 - Screen UI is just a tkinkter frame maintained by a custom [frame mananger](utils.py) in utils.py 
 - PDF manipulation code is in [pdf_utils.py](pdf_utils.py)
-
+## Tasks
+- [x] Make a frame manager.
+- [x] Adding a back button.
+- [x] Make a Rounded Button.
+- [x] Add encrypting PDF logic.
+- [x] Add reversing PDF logic.
+- [ ] Add mordern UI to Password Page
+- [ ] Add widgets to Welcome Page.
+- [ ] Add widgets to Main Page.
