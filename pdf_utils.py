@@ -7,7 +7,7 @@ def put_password(password:str,path:str,saving_path:str,return_time=False)  -> st
     R=6
     pdf.save(saving_path, encryption=pikepdf.Encryption(owner=password, user=password, R=R)) 
     pdf.close()
-    if return_time:  f'time taken for  {len(pdf.pages)} pages is {time.process_time()-start} with R {R} '
+    if return_time:  return f'time taken for  {len(pdf.pages)} pages is {time.process_time()-start} with R {R} '
     print(f'time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ')
 def reverse_pdf(path:str,new_path:str,path_to_be_saved:str):
     start=time.process_time()

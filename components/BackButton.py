@@ -9,7 +9,7 @@ class BackButton(tkinter.Frame):
         super().__init__(parent_frame)
         self.app=parent_frame
         self.buttontext = buttontext
-        tkinter.Button(self,text= self.buttontext,width=1,height=1, command=self.go_back).pack()
+        tkinter.Button(self,text= self.buttontext,width=3,height=1, command=self.go_back).pack()
         self.pack(side=tkinter.TOP, anchor=tkinter.NW)
     def go_back(self):
         self.app.frame_manager.go_back()
