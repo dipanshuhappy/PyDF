@@ -11,7 +11,7 @@ class WelcomePage(Page):
         self.pack(expand=True)
     def make_widgets(self) -> None:
         Button(self,text="Enter",command=lambda:self.goto_mainPage()).pack(anchor='center')
-        Button(self, text="info 💭", command=lambda:self.goto_inforpage()).pack()
+        Button(self, text="info 💭", command=lambda:self.goto_inforpage())
     def goto_mainPage(self):
         self.app.frame_manager.show_frame("MainPage")
     def goto_inforpage(self):

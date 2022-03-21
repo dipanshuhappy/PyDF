@@ -1,3 +1,4 @@
+import os
 from tkinter import Button, Entry, Label, filedialog, Text, END
 from pages.Page import Page
 from pdf_utils import  put_password
@@ -12,7 +13,8 @@ class PasswordPage(Page):
     def make_widgets(self) -> None:
         Label(self,text="Select A PDf and put password ").pack()
         Button(self,text="Open PDf",command=self.getPDf).pack(anchor='center')
-        self.password=Entry(self,width=10)
+        self.filename_label:Label=Label(self)
+        self.password:Entry=Entry(self,width=10,show="*")
         self.password.pack()
         Label(self,text="Put password").pack()
         Button(self,text="Finish",command=self.encrypt).pack(anchor='center')
@@ -27,4 +29,6 @@ class PasswordPage(Page):
         ('All files', '*.*')
         )
         self.filename=filedialog.askopenfilename(filetypes=filetypes)
+        self.filename_label.config(text=os.path.basename(self.filename))
+        self.filename_label.pack()
         print(self.filename)
