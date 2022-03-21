@@ -12,7 +12,7 @@ class WindowManager:
     def __do_window_config(self,app:tkinter.Tk)->None:
         app.config(self.config)
         app.title('PyDF')
-        app.state('zoomed')
+        app.geometry("600x400")
         app.rowconfigure(0,weight=1)
         app.columnconfigure(0,weight=1)
 class FrameManager:

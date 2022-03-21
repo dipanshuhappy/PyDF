@@ -2,6 +2,7 @@ import enum
 import time
 
 from pikepdf import Pdf
+import pikepdf
 
 def put_password(password:str,path:str):
     start=time.process_time()
@@ -44,4 +45,4 @@ def merge_two_pdfs(first_pdf_path:str,second_pdf_path:str,saving_path:str):
 #     file.pages.reverse()
 #     file.save("test//test_output.pdf")
 # reverse_pdf('test//test.pdf','test//test_output.pdf')
-merge_two_pdfs("test//test.pdf","test//test.pdf","test//test_output.pdf")
+#merge_two_pdfs("test//test.pdf","test//test.pdf","test//test_output.pdf")
