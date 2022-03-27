@@ -1,7 +1,6 @@
 import sys
 import tkinter as tk
 from components.BackButton import BackButton
-from components.RoundButton import RoundButton
 from pages.MainPage import MainPage
 from pages.PasswordPage import PasswordPage
 from pages.WelcomePage import WelcomePage
