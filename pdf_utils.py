@@ -1,3 +1,4 @@
+import os
 import time
 from pikepdf import Pdf
 import pikepdf
@@ -5,7 +6,7 @@ def put_password(password:str,path:str,saving_path:str,return_time=False)  -> st
     start=time.process_time()
     pdf = pikepdf.Pdf.open(path)  
     R=6
-    pdf.save(saving_path, encryption=pikepdf.Encryption(owner=password, user=password, R=R)) 
+    pdf.save(os.path.join(saving_path,os.path.basename(path)+".pdf"), encryption=pikepdf.Encryption(owner=password, user=password, R=R)) 
     pdf.close()
     if return_time:  return f'time taken for  {len(pdf.pages)} pages is {time.process_time()-start} with R {R} '
     print(f'time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ')

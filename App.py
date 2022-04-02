@@ -1,5 +1,6 @@
 import sys
 import tkinter as tk
+from Admin import run
 from components.BackButton import BackButton
 from pages.MainPage import MainPage
 from pages.PasswordPage import PasswordPage
@@ -21,6 +22,10 @@ class App(tk.Tk):
             "InfoPage": InfoPage
         },self)
         self.frame_manager.show_frame('WelcomePage')
-app=App()
-print("App size",sys.getsizeof(app))
-app.mainloop()
+def makeApp():
+    app=App()
+    print("App size",sys.getsizeof(app))
+    app.mainloop()
+if __name__=='__main__':
+    run(makeApp)
+    
