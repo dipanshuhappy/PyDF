@@ -2,19 +2,20 @@ import os
 import time
 from pikepdf import Pdf
 import pikepdf
+def get_saving_pdf_name(path:str,saving_path:str):   return os.path.join(saving_path,os.path.basename(path)+".pdf")
 def put_password(password:str,path:str,saving_path:str,return_time=False)  -> str | None:
     start=time.process_time()
     pdf = pikepdf.Pdf.open(path)  
     R=6
-    pdf.save(os.path.join(saving_path,os.path.basename(path)+".pdf"), encryption=pikepdf.Encryption(owner=password, user=password, R=R)) 
+    pdf.save(get_saving_pdf_name(path,saving_path), encryption=pikepdf.Encryption(owner=password, user=password, R=R)) 
     pdf.close()
     if return_time:  return f'time taken for  {len(pdf.pages)} pages is {time.process_time()-start} with R {R} '
     print(f'time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ')
-def reverse_pdf(path:str,new_path:str,path_to_be_saved:str):
+def reverse_pdf(path:str,new_path:str):
     start=time.process_time()
     with Pdf.open(path) as pdf:
         pdf.pages.reverse()
-        pdf.save(new_path)
+        pdf.save(get_saving_pdf_name(path,new_path))
     print(f'time taken of {len(pdf.pages)} pages is {time.process_time()-start} when reversing ')
 
 def merge_two_pdfs(first_pdf_path:str,second_pdf_path:str,saving_path:str):

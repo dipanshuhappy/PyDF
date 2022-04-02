@@ -4,6 +4,7 @@ from Admin import run
 from components.BackButton import BackButton
 from pages.MainPage import MainPage
 from pages.PasswordPage import PasswordPage
+from pages.ReversePage import ReversePage
 from pages.WelcomePage import WelcomePage
 from utils import FrameManager, WindowManager
 from pages.info import *
@@ -19,7 +20,8 @@ class App(tk.Tk):
             'WelcomePage':WelcomePage,
             'MainPage':MainPage,
             "PasswordPage":PasswordPage,
-            "InfoPage": InfoPage
+            "InfoPage": InfoPage,
+            "ReversePage":ReversePage
         },self)
         self.frame_manager.show_frame('WelcomePage')
 def makeApp():

@@ -1,10 +1,25 @@
 from __future__ import annotations
 import tkinter
+from tkinter import filedialog
 from typing import TYPE_CHECKING,Type
 from pages.Page import Page
 import sys
 if TYPE_CHECKING:
     from App import App
+class Utils:
+    @staticmethod
+    def getPDf()->str:
+        filetypes = (
+        ('pdf files', '*.pdf'),
+        ('All files', '*.*')
+        )
+        filename=filedialog.askopenfilename(filetypes=filetypes)
+        print(filename)
+        return filename
+    @staticmethod
+    def get_saving_file_path()->str:
+        save_file=filedialog.askdirectory()
+        return save_file
 class WindowManager:
     def __init__(self,app:tkinter.Tk,config:dict={}) -> None:
         self.config=config
