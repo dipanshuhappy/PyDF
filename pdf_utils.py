@@ -6,15 +6,17 @@ def get_saving_pdf_name(path:str,saving_path:str):   return os.path.join(saving_
 def add_watermark(path:str,saving_path:str):
     pdf=Pdf.open(path)
     destination_page=Page(pdf.pages[1])
-    c=Object.parse("kllkjlk")
-    text=Page(c)
-    destination_page.add_overlay(pdf.pages[0],Rectangle(100,100,200,200))
+    print(repr(pdf.pages[0].trimbox))
+    print(repr(pdf.pages[0].as_form_xobject(False)))
+    print("--------------PDF--------------------------DocINfo",repr(pdf.docinfo))
+    x,y=(612-100,792-100)
+    destination_corrdinate=Rectangle(x,y,x+100,y+100)
+    print("This is the Array ",repr(destination_corrdinate.as_array()))
+    print(f"This is the height {destination_corrdinate.height} and width {destination_corrdinate.width} ")
+    destination_page.add_underlay(pdf.pages[0],destination_corrdinate)
     pdf.save(saving_path)
     pdf.close()
-def get_metadata(path):
-    pdf=Pdf.open(path)
-    a=pdf.docinfo
-    return repr(a)
+def get_metadata(path):    return repr(Pdf.open(path).docinfo)
 def put_password(password:str,path:str,saving_path:str,return_time=False)  -> str | None:
     start=time.process_time()
     pdf = pikepdf.Pdf.open(path)  

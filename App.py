@@ -6,8 +6,8 @@ from pages.MainPage import MainPage
 from pages.PasswordPage import PasswordPage
 from pages.ReversePage import ReversePage
 from pages.WelcomePage import WelcomePage
+from pages.InfoPage import InfoPage
 from utils import FrameManager, WindowManager
-from pages.info import *
 class App(tk.Tk):
     def __init__(self, screenName: str = None , baseName: str = None , className: str =None, useTk: bool =None , sync: bool =None , use: str = None ) -> None:
         if (screenName!=None): super().__init__(screenName, baseName, className, useTk, sync, use)
@@ -30,4 +30,3 @@ def makeApp():
     app.mainloop()
 if __name__=='__main__':
     makeApp()
-    
