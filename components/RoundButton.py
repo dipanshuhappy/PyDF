@@ -41,7 +41,7 @@ class RoundButton(ttk.Frame):
                 x1, y1+radius,
                 x1, y1+radius,
                 x1, y1
-                ]
+            ]
 
         return self.canvas.create_polygon(points, **kwargs, smooth=True)
     def clicked(self,event):
