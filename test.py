@@ -125,4 +125,13 @@ def make_an_empyt_pdf(name:str):
     dst=Pdf.new();
     dst.save(f"test//{name}.pdf")
 # make_an_empyt_pdf("emp")
-make_image_pdf("test//simple_page.pdf")
+# make_image_pdf("test//simple_page.pdf")
+import logging
+ 
+import logging
+
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+logging.warning('This is a warning message')
+logging.error('This is an error message')
+logging.critical('This is a critical message')

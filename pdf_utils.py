@@ -113,7 +113,7 @@ def make_pdf_from_string(string: str) -> Page:
     P = Pdf.open("test//123.pdf")
     return P.pages[0]
 
-
+ 
 def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
     start = time.process_time()
     first_pdf = Pdf.open(first_pdf_path)
