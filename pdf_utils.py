@@ -1,9 +1,12 @@
+from logging import Logger
 import os
 import time
 from pikepdf import Encryption, Name, Object, Page, Pdf, Rectangle, Stream
 import img2pdf
 
+from log import Log
 
+def get_logger()->Logger:   return Log(__name__).logger
 def get_saving_pdf_name(path: str, saving_path: str): return os.path.join(
     saving_path, os.path.basename(path)+".pdf")
 
@@ -59,6 +62,8 @@ def get_metadata(path): return repr(Pdf.open(path).docinfo)
 
 
 def put_password(password: str, path: str, saving_path: str, return_time=False) -> str | None:
+    LOG=get_logger()
+    LOG.info("Putting password to pdf started , might take some time")
     start = time.process_time()
     pdf = Pdf.open(path)
     R = 6
@@ -66,18 +71,23 @@ def put_password(password: str, path: str, saving_path: str, return_time=False) 
              encryption=Encryption(owner=password, user=password, R=R))
     pdf.close()
     if return_time:
+        # TODO:Remove these return statements
+        
         return f'time taken for  {len(pdf.pages)} pages is {time.process_time()-start} with R {R} '
-    print(
-        f'time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ')
+    LOG.debug( f"time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ")
+    LOG.info(f"Reversing  pdf ended ,file saved at {saving_path}")
 
 
 def reverse_pdf(path: str, new_path: str):
+    LOG=get_logger()
+    LOG.info("Reversing pdf started , might take some time")
+    saving_path=get_saving_pdf_name(path, new_path)
     start = time.process_time()
     with Pdf.open(path) as pdf:
         pdf.pages.reverse()
-        pdf.save(get_saving_pdf_name(path, new_path))
-    print(
-        f'time taken of {len(pdf.pages)} pages is {time.process_time()-start} when reversing ')
+        pdf.save(saving_path)
+    LOG.info(f"Reversing  pdf ended ,file saved at {saving_path}")
+    LOG.debug(f"time taken of {len(pdf.pages)} pages is {time.process_time()-start} when reversing ")
 
 
 def make_pdf_from_string(string: str) -> Page:
@@ -115,6 +125,8 @@ def make_pdf_from_string(string: str) -> Page:
 
  
 def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
+    LOG=get_logger()
+    LOG.info("Mergeing two pdf started , might take some time")
     start = time.process_time()
     first_pdf = Pdf.open(first_pdf_path)
     second_pdf = Pdf.open(second_pdf_path)
@@ -124,9 +136,11 @@ def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
         pdf.save(saving_path)
     first_pdf.close()
     second_pdf.close()
-    print(
-        f'time taken of merging {len(first_pdf.pages)} pages  and {len(second_pdf.pages)} page is {time.process_time()-start} when merging'
+    LOG.debug(
+        f'Time taken of merging {len(first_pdf.pages)} pages  and {len(second_pdf.pages)} page is {time.process_time()-start} when merging'
     )
+    LOG.info(f"Mergeing two pdf ended ,file saved at {saving_path}")
+
 
 
 if __name__ == "__main__":

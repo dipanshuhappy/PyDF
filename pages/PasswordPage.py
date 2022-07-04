@@ -36,4 +36,4 @@ class PasswordPage(Page):
         self.filename=filedialog.askopenfilename(filetypes=filetypes)
         self.filename_label.config(text=os.path.basename(self.filename))
         self.filename_label.pack()
-        print(self.filename)
+       #TODO add loging to this

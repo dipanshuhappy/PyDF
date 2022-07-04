@@ -2,6 +2,7 @@ import sys
 import tkinter as tk
 from Admin import run
 from components.BackButton import BackButton
+from log import Log
 from pages.MainPage import MainPage
 from pages.PasswordPage import PasswordPage
 from pages.ReversePage import ReversePage
@@ -27,8 +28,10 @@ class App(tk.Tk):
         },self)
         self.frame_manager.show_frame('WelcomePage')
 def makeApp():
+    LOG=Log(__name__).logger
     app=App()
-    print("App size",sys.getsizeof(app))
+    LOG.debug(f"App Object made {app}")
+    LOG.info(f"App Size {sys.getsizeof(app)}")
     app.mainloop()
 if __name__=='__main__':
     makeApp()

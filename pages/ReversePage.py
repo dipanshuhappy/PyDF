@@ -29,7 +29,6 @@ class ReversePage(Page):
         self.filename=Utils.getPDf()
         self.filename_label.config(text=os.path.basename(self.filename))
         self.filename_label.pack()
-        print(self.filename)
     def get_saving_file_path(self):
         self.save_file=Utils.get_saving_file_path()
         self.saving_path_text.config(text=os.path.basename(self.save_file))

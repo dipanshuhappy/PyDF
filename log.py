@@ -7,7 +7,6 @@ class Log:
         self.formater=logging.Formatter(Log.FORMAT)
         self.__add_file_handler(fileName)
         self.__add_stream_handler()
-       
     def __add_file_handler(self,fileName:str):
         self.file=logging.FileHandler(fileName)
         self.file.setLevel(logging.DEBUG)
