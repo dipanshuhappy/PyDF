@@ -1,5 +1,6 @@
 from pikepdf import Pdf,Object,Stream,Name
 import img2pdf
+from log import Log
 from pages.Page import Page
 def test_create_pdf(outdir):
     pdf = Pdf.new()
@@ -126,12 +127,16 @@ def make_an_empyt_pdf(name:str):
     dst.save(f"test//{name}.pdf")
 # make_an_empyt_pdf("emp")
 # make_image_pdf("test//simple_page.pdf")
-import logging
+# import logging
  
-import logging
+# import logging
 
-logging.debug('This is a debug message')
-logging.info('This is an info message')
-logging.warning('This is a warning message')
-logging.error('This is an error message')
-logging.critical('This is a critical message')
+# logging.debug('This is a debug message')
+# logging.info('This is an info message')
+# logging.warning('This is a warning message')
+# logging.error('This is an error message')
+# logging.critical('This is a critical message')
+# import colorama
+# from colorama import Fore
+
+# print(Fore.RED + 'This text is red in color')
