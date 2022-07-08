@@ -6,7 +6,10 @@ import img2pdf
 
 from log import Log
 
-def get_logger()->Logger:   return Log(__name__).logger
+
+def get_logger() -> Logger: return Log(__name__).logger
+
+
 def get_saving_pdf_name(path: str, saving_path: str): return os.path.join(
     saving_path, os.path.basename(path)+".pdf")
 
@@ -31,7 +34,7 @@ def add_watermark(path: str, saving_path: str):
 
 def add_watermaker_image(path: str, image_path: str, saving_path: str):
     pdf = Pdf.open(path)
-    water_mark = make_pdf_from_image(image_path,"test//image.png")
+    water_mark = make_pdf_from_image(image_path, "test//image.png")
     print(repr(water_mark.trimbox))
     print(repr(water_mark.as_form_xobject(False)))
     print("--------------PDF--------------------------DocINfo---------------------------", repr(pdf.docinfo))
@@ -54,15 +57,15 @@ def make_pdf_from_image(path: str, image_path: str) -> Page:
                 image_path
             )
         )
-    temp_pdf=Pdf.open(path)
+    temp_pdf = Pdf.open(path)
     return temp_pdf.pages[0]
 
 
 def get_metadata(path): return repr(Pdf.open(path).docinfo)
 
 
-def put_password(password: str, path: str, saving_path: str, return_time=False) -> str | None:
-    LOG=get_logger()
+def put_password(password: str, path: str, saving_path: str, return_time=False) -> None:
+    LOG = get_logger()
     LOG.info("Putting password to pdf started , might take some time")
     start = time.process_time()
     pdf = Pdf.open(path)
@@ -70,24 +73,22 @@ def put_password(password: str, path: str, saving_path: str, return_time=False) 
     pdf.save(get_saving_pdf_name(path, saving_path),
              encryption=Encryption(owner=password, user=password, R=R))
     pdf.close()
-    if return_time:
-        # TODO:Remove these return statements
-        
-        return f'time taken for  {len(pdf.pages)} pages is {time.process_time()-start} with R {R} '
-    LOG.debug( f"time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ")
+    LOG.debug(
+        f"time for pikepdf of {len(pdf.pages)} pages is {time.process_time()-start} with R {R} ")
     LOG.info(f"Reversing  pdf ended ,file saved at {saving_path}")
 
 
 def reverse_pdf(path: str, new_path: str):
-    LOG=get_logger()
+    LOG = get_logger()
     LOG.info("Reversing pdf started , might take some time")
-    saving_path=get_saving_pdf_name(path, new_path)
+    saving_path = get_saving_pdf_name(path, new_path)
     start = time.process_time()
     with Pdf.open(path) as pdf:
         pdf.pages.reverse()
         pdf.save(saving_path)
     LOG.info(f"Reversing  pdf ended ,file saved at {saving_path}")
-    LOG.debug(f"time taken of {len(pdf.pages)} pages is {time.process_time()-start} when reversing ")
+    LOG.debug(
+        f"time taken of {len(pdf.pages)} pages is {time.process_time()-start} when reversing ")
 
 
 def make_pdf_from_string(string: str) -> Page:
@@ -123,9 +124,9 @@ def make_pdf_from_string(string: str) -> Page:
     P = Pdf.open("test//123.pdf")
     return P.pages[0]
 
- 
+
 def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
-    LOG=get_logger()
+    LOG = get_logger()
     LOG.info("Mergeing two pdf started , might take some time")
     start = time.process_time()
     first_pdf = Pdf.open(first_pdf_path)
@@ -142,7 +143,7 @@ def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
     LOG.info(f"Mergeing two pdf ended ,file saved at {saving_path}")
 
 
-
 if __name__ == "__main__":
     # add_watermark("test//test.pdf", "test//new_test.pdf")
-    add_watermaker_image("test//test.pdf","test//simple_page.pdf","test//test2.pdf")
+    add_watermaker_image(
+        "test//test.pdf", "test//simple_page.pdf", "test//test2.pdf")
