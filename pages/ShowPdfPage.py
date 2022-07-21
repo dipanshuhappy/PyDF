@@ -18,7 +18,6 @@ class ShowPdfPage(Page):
     # def goto_inforpage(self):
     #     self.app.frame_manager.show_frame("InfoPage")
 
-
     def show_page(self) -> None:
         self.make_widgets()
         self.pack(expand=True)
@@ -26,7 +25,9 @@ class ShowPdfPage(Page):
     def make_widgets(self) -> None:
         pdf=tkPDFViewer.ShowPdf();
         pdf.pdf_view(
-            self.app,
-            pdf_location = "test//simple_page.pdf", 
-            width = 50, height = 100
-        ).pack()
+            self,
+            pdf_location = "test//test.pdf", 
+            width = 50, height = 100,
+            load="after"
+        )
+        pdf.frame.pack()
