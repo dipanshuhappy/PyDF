@@ -14,10 +14,9 @@ def get_saving_pdf_name(path: str, saving_path: str): return os.path.join(
     saving_path, os.path.basename(path)+".pdf")
 
 
-def add_watermark(path: str, saving_path: str):
+def add_text_watermark(path: str, saving_path: str,text:str):
     pdf = Pdf.open(path)
-    water_mark = make_pdf_from_string(
-        "Hello this is water mark i want you too add ")
+    water_mark = make_pdf_from_string(text)
     print(repr(water_mark.trimbox))
     print(repr(water_mark.as_form_xobject(False)))
     print("--------------PDF--------------------------DocINfo---------------------------", repr(pdf.docinfo))
@@ -28,10 +27,9 @@ def add_watermark(path: str, saving_path: str):
         f"This is the height {destination_corrdinate.height} and width {destination_corrdinate.width} ")
     for page in pdf.pages:
         page.add_underlay(water_mark, destination_corrdinate)
+    saving_path+="/sk;kdflsdfjlsdjflsdfjlsdflsd.pdf"
     pdf.save(saving_path)
     pdf.close()
-
-
 def add_watermaker_image(path: str, image_path: str, saving_path: str):
     pdf = Pdf.open(path)
     water_mark = make_pdf_from_image(image_path, "test//image.png")
@@ -64,7 +62,7 @@ def make_pdf_from_image(path: str, image_path: str) -> Page:
 def get_metadata(path): return repr(Pdf.open(path).docinfo)
 
 
-def put_password(password: str, path: str, saving_path: str, return_time=False) -> None:
+def put_password(password: str, path: str, saving_path: str) -> None:
     LOG = get_logger()
     LOG.info("Putting password to pdf started , might take some time")
     start = time.process_time()
@@ -92,6 +90,8 @@ def reverse_pdf(path: str, new_path: str):
 
 
 def make_pdf_from_string(string: str) -> Page:
+    LOG = get_logger()
+    LOG.debug("Str for making into text "+string)
     pdf = Pdf.new()
     rfont = {'/F1': pdf.make_indirect(
         Object.parse(
@@ -121,8 +121,8 @@ def make_pdf_from_string(string: str) -> Page:
     pdf.pages.append(page)
     pdf.save("test//123.pdf")
     pdf.close()
-    P = Pdf.open("test//123.pdf")
-    return P.pages[0]
+    with Pdf.open("test//123.pdf") as final_pdf:
+        return final_pdf.pages[0]
 
 
 def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
@@ -145,5 +145,10 @@ def merge_two_pdfs(first_pdf_path: str, second_pdf_path: str, saving_path: str):
 
 if __name__ == "__main__":
     # add_watermark("test//test.pdf", "test//new_test.pdf")
-    add_watermaker_image(
-        "test//test.pdf", "test//simple_page.pdf", "test//test2.pdf")
+    # add_watermaker_image(
+    #     "test//test.pdf", "test//simple_page.pdf", "test//test2.pdf")
+    add_text_watermark(
+        "test//simple_page.pdf",
+        "test//sjldfdjjjjjjjjjjjjjjjslkdfj.pdf",
+        "kslfjlsdjf"
+    )

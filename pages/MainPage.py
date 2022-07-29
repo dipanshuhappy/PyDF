@@ -14,7 +14,7 @@ class MainPage(Page):
             Button(self,text="Put Password",command=self.goto_password_page,foreground='red'),
             Button(self,text="Reverse Pdf",foreground='brown',command=self.goto_reverse_page),
             Button(self,text='click me',foreground='blue',command=self.goto_open_pdf),
-            Button(self,text='click me',foreground='black')
+            Button(self,text='Water Mark ',command=self.goto_water_mark_page,foreground='black')
         ]
         ).show_vertically()
     def goto_open_pdf(self):
@@ -23,3 +23,5 @@ class MainPage(Page):
         self.app.frame_manager.show_frame("ReversePage")
     def goto_password_page(self):
         self.app.frame_manager.show_frame("PasswordPage")
+    def goto_water_mark_page(self):
+        self.app.frame_manager.show_frame("AddWaterMarkPage")

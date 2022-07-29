@@ -1,9 +1,9 @@
 from __future__ import annotations
-from logging import Logger
 import tkinter
 from typing import TYPE_CHECKING
 
 from log import Log
+# from log import Logs
 if TYPE_CHECKING:
     from App import App
 
